@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ CYBER MILLENNIUM 2000 ⚡</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts for Retro Y2K Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Comic+Neue:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom Theme Variables */
+        :root {
+            --bg-base: #050515;
+            --pink-accent: #ff007f;
+            --cyan-accent: #00ffff;
+            --lime-accent: #00ff00;
+            --window-bg: rgba(16, 12, 38, 0.85);
+            --window-header: linear-gradient(90deg, #ff007f, #7928ca, #00ffff);
+            --border-light: #ffffff;
+            --border-dark: #4a4a4a;
+            --font-pixel: 'Press Start 2P', monospace;
+            --font-retro: 'VT323', monospace;
+            --font-cyber: 'Orbitron', sans-serif;
+        }
+
+        /* Y2K Theme Presets */
+        body.theme-matrix {
+            --bg-base: #020b02;
+            --pink-accent: #00ff66;
+            --cyan-accent: #00ff00;
+            --lime-accent: #39ff14;
+            --window-bg: rgba(2, 20, 5, 0.9);
+            --window-header: linear-gradient(90deg, #003b00, #00ff00, #003b00);
+        }
+
+        body.theme-pink {
+            --bg-base: #2a001a;
+            --pink-accent: #ff66cc;
+            --cyan-accent: #ff1493;
+            --lime-accent: #ffff00;
+            --window-bg: rgba(50, 5, 35, 0.88);
+            --window-header: linear-gradient(90deg, #ff1493, #ff66cc, #ff007f);
+        }
+
+        body.theme-silver {
+            --bg-base: #1a1d24;
+            --pink-accent: #e0e0e0;
+            --cyan-accent: #00d2ff;
+            --lime-accent: #ffffff;
+            --window-bg: rgba(35, 40, 50, 0.9);
+            --window-header: linear-gradient(90deg, #8e9eab, #eef2f3, #8e9eab);
+        }
+
+        /* General Styles & Reset */
+        body {
+            background-color: var(--bg-base);
+            color: #ffffff;
+            font-family: var(--font-retro);
+            font-size: 18px;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            cursor: crosshair;
+        }
+
+        /* Scanline Background Overlay */
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            background: linear-gradient(
+                rgba(18, 16, 16, 0) 50%, 
+                rgba(0, 0, 0, 0.25) 50%
+            ), linear-gradient(
+                90deg,
+                rgba(255, 0, 0, 0.03),
+                rgba(0, 255, 0, 0.01),
+                rgba(0, 0, 255, 0.03)
+            );
+            background-size: 100% 4px, 6px 100%;
+            z-index: 9999;
+        }
+
+        /* Y2K Bevel & Emboss Window Styling */
+        .y2k-window {
+            background: var(--window-bg);
+            border: 3px solid;
+            border-color: #ffffff #555555 #333333 #dddddd;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.6), inset 2px 2px 0px rgba(255,255,255,0.4);
+            backdrop-filter: blur(5px);
+        }
+
+        .y2k-header {
+            background: var(--window-header);
+            text-shadow: 1px 1px 2px #000;
+            border-bottom: 2px solid #ffffff;
+        }
+
+        .y2k-btn {
+            background: linear-gradient(180deg, #ffffff 0%, #cccccc 50%, #aaaaaa 100%);
+            color: #000;
+            border: 2px solid;
+            border-color: #ffffff #444444 #222222 #dddddd;
+            font-family: var(--font-pixel);
+            font-size: 10px;
+            box-shadow: 2px 2px 0px #000;
+            transition: all 0.05s ease;
+        }
+
+        .y2k-btn:active {
+            border-color: #222222 #dddddd #ffffff #444444;
+            transform: translate(1px, 1px);
+            box-shadow: 1px 1px 0px #000;
+        }
+
+        .y2k-btn-pink {
+            background: linear-gradient(180deg, #ff99dd 0%, #ff007f 50%, #99004d 100%);
+            color: #fff;
+        }
+
+        .y2k-btn-cyan {
+            background: linear-gradient(180deg, #99ffff 0%, #00ffff 50%, #008888 100%);
+            color: #000;
+        }
+
+        /* Chrome Text Effect */
+        .chrome-text {
+            font-family: var(--font-cyber);
+            background: linear-gradient(to bottom, #ffffff 0%, #dbdbdb 50%, #707070 51%, #e0e0e0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(2px 2px 0px var(--pink-accent)) drop-shadow(-2px -2px 0px var(--cyan-accent));
+        }
+
+        /* Neon Glow Effects */
+        .neon-pink {
+            color: var(--pink-accent);
+            text-shadow: 0 0 5px var(--pink-accent), 0 0 10px var(--pink-accent);
+        }
+
+        .neon-cyan {
+            color: var(--cyan-accent);
+            text-shadow: 0 0 5px var(--cyan-accent), 0 0 10px var(--cyan-accent);
+        }
+
+        .neon-lime {
+            color: var(--lime-accent);
+            text-shadow: 0 0 5px var(--lime-accent), 0 0 10px var(--lime-accent);
+        }
+
+        /* Pixel Star Trail Canvas */
+        #trail-canvas, #bg-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+        }
+
+        #bg-canvas { z-index: -2; }
+        #trail-canvas { z-index: 9998; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+            background: #000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--pink-accent);
+            border: 2px solid #ffffff;
+        }
+
+        /* Winamp Visualizer Bars Animation */
+        .vis-bar {
+            width: 4px;
+            background: var(--lime-accent);
+            transition: height 0.05s ease;
+        }
+
+        /* Marquee Glow */
+        marquee {
+            font-family: var(--font-pixel);
+            font-size: 12px;
+            background: #000000;
+            color: var(--lime-accent);
+            border-top: 2px solid var(--pink-accent);
+            border-bottom: 2px solid var(--cyan-accent);
+            padding: 4px 0;
+        }
+
+        /* Custom GIF/Pixel Art Badges */
+        .web-badge {
+            image-rendering: pixelated;
+            border: 1px solid #ffffff;
+            box-shadow: 2px 2px 0px #000;
+        }
+    </style>
+</head>
+<body class="theme-default">
+
+    <!-- Scanline Visual Overlay -->
+    <div class="scanlines"></div>
+
+    <!-- Background Canvas for Matrix / Starfield -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Cursor Stars Trail Canvas -->
+    <canvas id="trail-canvas"></canvas>
+
+    <!-- TOP TASKBAR / NAVIGATION -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-black/90 border-b-2 border-pink-500 px-3 py-1 flex justify-between items-center text-xs font-mono">
+        <div class="flex items-center space-x-2">
+            <span class="animate-pulse text-lg">💿</span>
+            <span class="chrome-text font-black text-sm tracking-widest">CYBER_2000.EXE</span>
+            <span class="hidden md:inline-block bg-pink-900/60 text-pink-300 px-2 py-0.5 rounded border border-pink-500/50">v2.0.0</span>
+        </div>
+
+        <!-- Marquee Announcement -->
+        <div class="hidden lg:block w-1/3 overflow-hidden">
+            <marquee scrollamount="4">★ BIENVENIDO AL CIBERESPACIO MILLENNIUM ★ BIENVENIDOS A LA WEB Y2K ★ MÚSICA EN VIVO Y CHAT DISPONIBLE ★ SIENTETE LIBRE DE EXPLORAR ★</marquee>
+        </div>
+
+        <!-- System Controls & Theme Switcher -->
+        <div class="flex items-center space-x-2">
+            <button onclick="setTheme('default')" class="px-2 py-1 y2k-btn text-[10px]" title="Modo Cyber Neon">🌐 Neon</button>
+            <button onclick="setTheme('pink')" class="px-2 py-1 y2k-btn y2k-btn-pink text-[10px]" title="Modo Pink Princess">💖 Pink</button>
+            <button onclick="setTheme('matrix')" class="px-2 py-1 y2k-btn text-[10px] bg-green-900 text-green-300 border-green-500" title="Modo Matrix Cyber">🟢 Matrix</button>
+            <button onclick="toggleAudio()" id="audio-toggle-btn" class="px-2 py-1 y2k-btn y2k-btn-cyan text-[10px]">🔊 SFX: ON</button>
+        </div>
+    </header>
+
+    <!-- MAIN DESKTOP CONTAINER -->
+    <main class="pt-12 pb-20 px-2 md:px-6 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-4 relative z-10">
+
+        <!-- ================= LEFT COLUMN: WINAMP PLAYER & PROFILE ================= -->
+        <div class="md:col-span-4 space-y-4">
+
+            <!-- WINAMP / CYBER PLAYER WINDOW -->
+            <div id="winamp-window" class="y2k-window rounded-t-lg overflow-hidden">
+                <div class="y2k-header p-1.5 flex justify-between items-center cursor-move handle">
+                    <span class="font-bold text-xs tracking-wider flex items-center gap-1">
+                        <i class="fa-solid fa-compact-disc animate-spin text-cyan-300"></i> CYBER_WINAMP v1.0
+                    </span>
+                    <div class="flex space-x-1">
+                        <button onclick="minimizeWindow('winamp-body')" class="w-4 h-4 y2k-btn flex items-center justify-center font-black">_</button>
+                        <button onclick="playSound('click')" class="w-4 h-4 y2k-btn flex items-center justify-center text-red-600 font-black">X</button>
+                    </div>
+                </div>
+
+                <div id="winamp-body" class="p-3 bg-black/80 space-y-3 font-mono text-xs">
+                    <!-- LED Display Screen -->
+                    <div class="bg-emerald-950/90 border-2 border-emerald-500 p-2 rounded text-emerald-400 shadow-inner">
+                        <div class="flex justify-between items-center mb-1 border-b border-emerald-800/80 pb-1">
+                            <span id="player-status" class="text-[10px] tracking-widest uppercase text-emerald-300">⏹ DETENIDO</span>
+                            <span id="player-time" class="text-[10px] font-bold">00:00</span>
+                        </div>
+                        <div class="truncate text-xs font-bold text-emerald-200" id="current-track-name">⚡ Millennium Synth - Cyber Drift 2000</div>
+                        
+                        <!-- Visualizer Bars -->
+                        <div class="flex items-end justify-between h-8 mt-2 gap-0.5 border-t border-emerald-900/50 pt-1" id="vis-container">
+                            <!-- 16 Animated Bars generated via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Player Controls -->
+                    <div class="flex items-center justify-between gap-1">
+                        <button onclick="prevTrack()" class="y2k-btn px-2 py-1 flex-1">⏮ PREV</button>
+                        <button onclick="togglePlay()" id="play-btn" class="y2k-btn y2k-btn-pink px-3 py-1 flex-1">▶ PLAY</button>
+                        <button onclick="stopAudio()" class="y2k-btn px-2 py-1 flex-1">⏹ STOP</button>
+                        <button onclick="nextTrack()" class="y2k-btn px-2 py-1 flex-1">NEXT ⏭</button>
+                    </div>
+
+                    <!-- Volume Slider -->
+                    <div class="flex items-center gap-2 text-[10px]">
+                        <span class="text-cyan-400">VOL:</span>
+                        <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.7" onchange="adjustVolume(this.value)" class="w-full accent-pink-500 cursor-pointer h-2 bg-gray-700 rounded">
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROFILE / MSN MESSENGER STYLE CARD -->
+            <div id="profile-window" class="y2k-window rounded-t-lg overflow-hidden">
+                <div class="y2k-header p-1.5 flex justify-between items-center cursor-move">
+                    <span class="font-bold text-xs tracking-wider flex items-center gap-1">
+                        <i class="fa-solid fa-user-ninja text-pink-300"></i> PERFIL CIBERNÉTICO
+                    </span>
+                    <button onclick="minimizeWindow('profile-body')" class="w-4 h-4 y2k-btn flex items-center justify-center font-black">_</button>
+                </div>
+
+                <div id="profile-body" class="p-3 space-y-3 bg-black/60">
+                    <div class="flex gap-3 items-center">
+                        <div class="relative">
+                            <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Cyber2000" alt="Avatar" class="w-16 h-16 border-2 border-cyan-400 bg-indigo-950 rounded p-1">
+                            <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border border-black rounded-full" title="Conectado a MSN"></span>
+                        </div>
+                        <div>
+                            <h2 class="chrome-text font-black text-lg leading-tight">Cyber_Naut2k</h2>
+                            <p class="text-xs text-pink-400 font-bold">« Viviendo en el año 2000 »</p>
+                            <p class="text-[10px] text-gray-300 mt-1">Estado: <span class="text-emerald-400" id="current-status-display">Escuchando MP3 & Programando Web</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Custom Mood Status Input -->
+                    <div class="p-2 bg-black/70 border border-purple-500/40 rounded space-y-1">
+                        <label class="text-[10px] text-cyan-300 font-bold block">Actualizar Estado de MSN:</label>
+                        <div class="flex gap-1">
+                            <input type="text" id="status-input" placeholder="Escribe tu subnick..." class="w-full bg-gray-900 border border-gray-600 px-2 py-0.5 text-xs text-white rounded">
+                            <button onclick="updateStatus()" class="y2k-btn y2k-btn-cyan text-[10px] px-2">OK</button>
+                        </div>
+                    </div>
+
+                    <!-- MySpace Top 8 Friends -->
+                    <div class="border-t border-gray-700 pt-2">
+                        <h3 class="text-xs font-bold text-pink-400 mb-2 flex justify-between items-center">
+                            <span>★ Mis Top 8 Amigos (MySpace)</span>
+                            <span class="text-[9px] text-gray-400">Online</span>
+                        </h3>
+                        <div class="grid grid-cols-4 gap-2 text-center text-[10px]">
+                            <div class="bg-purple-950/50 p-1 border border-pink-500/30 rounded">
+                                <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Neo" class="w-10 h-10 mx-auto rounded">
+                                <span class="truncate block text-cyan-300 mt-0.5">Neo_Matrix</span>
+                            </div>
+                            <div class="bg-purple-950/50 p-1 border border-pink-500/30 rounded">
+                                <img src="https://api.dicebear.com/7.x/bottts/svg?seed=GlitchGirl" class="w-10 h-10 mx-auto rounded">
+                                <span class="truncate block text-pink-300 mt-0.5">GlitchGirl</span>
+                            </div>
+                            <div class="bg-purple-950/50 p-1 border border-pink-500/30 rounded">
+                                <img src="https://api.dicebear.com/7.x/bottts/svg?seed=PixelKing" class="w-10 h-10 mx-auto rounded">
+                                <span class="truncate block text-yellow-300 mt-0.5">PixelKing</span>
+                            </div>
+                            <div class="bg-purple-950/50 p-1 border border-pink-500/30 rounded">
+                                <img src="https://api.dicebear.com/7.x/bottts/svg?seed=VaporWave" class="w-10 h-10 mx-auto rounded">
+                                <span class="truncate block text-lime-300 mt-0.5">VaporWave</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MEDIA VAULT & RETRO COUNTER -->
+            <div id="vault-window" class="y2k-window rounded-t-lg overflow-hidden">
+                <div class="y2k-header p-1.5 flex justify-between items-center cursor-move">
+                    <span class="font-bold text-xs tracking-wider flex items-center gap-1">
+                        <i class="fa-solid fa-hourglass-half text-lime-300"></i> MILLENNIUM VAULT & STATS
+                    </span>
+                    <button onclick="minimizeWindow('vault-body')" class="w-4 h-4 y2k-btn flex items-center justify-center font-black">_</button>
+                </div>
+
+                <div id="vault-body" class="p-3 space-y-3 bg-black/70">
+                    <!-- Countdown to Y2K Millennial Clock -->
+                    <div class="text-center p-2 bg-indigo-950/60 border border-pink-500/50 rounded">
+                        <span class="text-[10px] text-pink-300 block font-bold mb-1">⏳ TIEMPO TRANSCURRIDO DESDE EL Y2K (1 ENERO 2000):</span>
+                        <div id="y2k-timer" class="font-mono font-black text-sm text-lime-400 tracking-wider">00y 00d 00h 00m 00s</div>
+                    </div>
+
+                    <!-- Web Visitor Counter Badge -->
+                    <div class="flex items-center justify-between bg-black p-2 border border-cyan-500/50 rounded">
+                        <span class="text-xs text-cyan-300 font-bold">CONTADOR DE VISITAS:</span>
+                        <div class="bg-gradient-to-r from-black via-gray-900 to-black px-2 py-0.5 border border-lime-400 font-mono text-lime-400 font-black tracking-widest text-sm shadow-[0_0_10px_rgba(0,255,0,0.5)]">
+                            0 0 4 2 0 9
+                        </div>
+                    </div>
+
+                    <!-- Retro Animated Web Badges -->
+                    <div class="flex flex-wrap gap-2 justify-center pt-1">
+                        <div class="web-badge bg-blue-900 text-[9px] px-1.5 py-0.5 text-white font-bold">BEST VIEWED IN NETSCAPE 4.0</div>
+                        <div class="web-badge bg-yellow-600 text-[9px] px-1.5 py-0.5 text-black font-bold">MADE WITH FLASH 5</div>
+                        <div class="web-badge bg-red-800 text-[9px] px-1.5 py-0.5 text-white font-bold">IE 5.0 COMPATIBLE</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ================= RIGHT COLUMN: INTERACTIVE ARCADE & GUESTBOOK ================= -->
+        <div class="md:col-span-8 space-y-4">
+
+            <!-- MINI GAME ARCADE: CYBER SNAKE / CLICKER -->
+            <div id="arcade-window" class="y2k-window rounded-t-lg overflow-hidden">
+                <div class="y2k-header p-1.5 flex justify-between items-center cursor-move">
+                    <span class="font-bold text-xs tracking-wider flex items-center gap-1">
+                        <i class="fa-solid fa-gamepad text-yellow-300"></i> MINI ARCADE: CYBER SNAKE 2000
+                    </span>
+                    <div class="flex items-center gap-2">
+                        <span class="text-[10px] text-yellow-300 font-mono font-bold" id="game-score">PUNTOS: 0</span>
+                        <button onclick="minimizeWindow('arcade-body')" class="w-4 h-4 y2k-btn flex items-center justify-center font-black">_</button>
+                    </div>
+                </div>
+
+                <div id="arcade-body" class="p-3 bg-black/90 flex flex-col items-center justify-center space-y-3">
+                    <div class="relative w-full max-w-[480px] aspect-[4/3] bg-black border-2 border-lime-400 rounded overflow-hidden flex items-center justify-center">
+                        <canvas id="snake-canvas" class="w-full h-full block bg-black"></canvas>
+                        
+                        <!-- Game Over / Start Overlay -->
+                        <div id="game-overlay" class="absolute inset-0 bg-black/85 flex flex-col items-center justify-center space-y-3 p-4 text-center">
+                            <h3 class="chrome-text font-black text-xl">CYBER SNAKE</h3>
+                            <p class="text-xs text-cyan-300 font-mono">Usa las flechas del teclado o los botones en pantalla para recolectar data-cubos.</p>
+                            <button onclick="startGame()" class="y2k-btn y2k-btn-pink px-4 py-2 text-xs">🎮 INICIAR JUEGO</button>
+                        </div>
+                    </div>
+
+                    <!-- Touch Controls for Mobile Devices -->
+                    <div class="grid grid-cols-3 gap-1 w-36 md:hidden">
+                        <div></div>
+                        <button onclick="changeDir('UP')" class="y2k-btn p-2">▲</button>
+                        <div></div>
+                        <button onclick="changeDir('LEFT')" class="y2k-btn p-2">◄</button>
+                        <button onclick="changeDir('DOWN')" class="y2k-btn p-2">▼</button>
+                        <button onclick="changeDir('RIGHT')" class="y2k-btn p-2">►</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CYBER GUESTBOOK / LIBRO DE VISITAS -->
+            <div id="guestbook-window" class="y2k-window rounded-t-lg overflow-hidden">
+                <div class="y2k-header p-1.5 flex justify-between items-center cursor-move">
+                    <span class="font-bold text-xs tracking-wider flex items-center gap-1">
+                        <i class="fa-solid fa-comments text-cyan-300"></i> LIBRO DE VISITAS CIBERNÉTICO (GUESTBOOK)
+                    </span>
+                    <button onclick="minimizeWindow('guestbook-body')" class="w-4 h-4 y2k-btn flex items-center justify-center font-black">_</button>
+                </div>
+
+                <div id="guestbook-body" class="p-3 bg-black/80 space-y-3">
+                    <!-- Comment Input Form -->
+                    <form onsubmit="addGuestbookEntry(event)" class="space-y-2 p-2 bg-indigo-950/40 border border-pink-500/30 rounded">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            <input type="text" id="gb-author" placeholder="Tu Nickname..." required class="bg-gray-900 border border-cyan-500/50 px-2 py-1 text-xs text-white rounded focus:outline-none focus:border-pink-500">
+                            <select id="gb-avatar" class="bg-gray-900 border border-cyan-500/50 px-2 py-1 text-xs text-white rounded">
+                                <option value="🤖 Robot">Avatar: 🤖 Robot Cyber</option>
+                                <option value="👽 Alien">Avatar: 👽 Alien 2000</option>
+                                <option value="💖 Princess">Avatar: 💖 Y2K Girl</option>
+                                <option value="⚡ Hacker">Avatar: ⚡ Cyber Hacker</option>
+                            </select>
+                        </div>
+                        <textarea id="gb-msg" placeholder="Escribe tu mensaje para el ciberespacio..." required rows="2" class="w-full bg-gray-900 border border-cyan-500/50 px-2 py-1 text-xs text-white rounded focus:outline-none focus:border-pink-500"></textarea>
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] text-pink-400">★ ¡Deja tu huella en el año 2000!</span>
+                            <button type="submit" class="y2k-btn y2k-btn-pink px-3 py-1 text-xs">FIRMAR GUESTBOOK ✍️</button>
+                        </div>
+                    </form>
+
+                    <!-- Entries List Container -->
+                    <div id="guestbook-entries" class="space-y-2 max-h-56 overflow-y-auto pr-1">
+                        <!-- Default Entries injected by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- MEDIA & GIF GALLERY -->
+            <div id="gallery-window" class="y2k-window rounded-t-lg overflow-hidden">
+                <div class="y2k-header p-1.5 flex justify-between items-center cursor-move">
+                    <span class="font-bold text-xs tracking-wider flex items-center gap-1">
+                        <i class="fa-solid fa-photo-film text-pink-300"></i> GALERÍA Y2K & EASTER EGGS
+                    </span>
+                    <button onclick="minimizeWindow('gallery-body')" class="w-4 h-4 y2k-btn flex items-center justify-center font-black">_</button>
+                </div>
+
+                <div id="gallery-body" class="p-3 bg-black/80">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
+                        <div class="p-2 bg-purple-950/40 border border-pink-500/40 rounded cursor-pointer hover:scale-105 transition-transform" onclick="triggerEasterEgg('glitch')">
+                            <div class="text-2xl mb-1">💫</div>
+                            <span class="text-xs text-pink-300 font-bold block">Efecto Glitch</span>
+                            <span class="text-[9px] text-gray-400">Clic para activar</span>
+                        </div>
+                        <div class="p-2 bg-purple-950/40 border border-cyan-500/40 rounded cursor-pointer hover:scale-105 transition-transform" onclick="triggerEasterEgg('popup')">
+                            <div class="text-2xl mb-1">💾</div>
+                            <span class="text-xs text-cyan-300 font-bold block">Popups Y2K</span>
+                            <span class="text-[9px] text-gray-400">Alerta Retro</span>
+                        </div>
+                        <div class="p-2 bg-purple-950/40 border border-lime-500/40 rounded cursor-pointer hover:scale-105 transition-transform" onclick="triggerEasterEgg('matrix')">
+                            <div class="text-2xl mb-1">🕶️</div>
+                            <span class="text-xs text-lime-300 font-bold block">Lluvia Matrix</span>
+                            <span class="text-[9px] text-gray-400">Inyectar Data</span>
+                        </div>
+                        <div class="p-2 bg-purple-950/40 border border-yellow-500/40 rounded cursor-pointer hover:scale-105 transition-transform" onclick="triggerEasterEgg('party')">
+                            <div class="text-2xl mb-1">🪩</div>
+                            <span class="text-xs text-yellow-300 font-bold block">Fiesta Disco 2000</span>
+                            <span class="text-[9px] text-gray-400">Luces Flashing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER TASKBAR -->
+    <footer class="fixed bottom-0 left-0 right-0 z-50 bg-black/95 border-t-2 border-cyan-500 px-3 py-1 flex justify-between items-center text-xs font-mono">
+        <div class="flex items-center space-x-2">
+            <button onclick="alert('⚡ CYBER MILLENNIUM 2000 - Creado para la experiencia retro definitiva.')" class="y2k-btn y2k-btn-pink px-2 py-0.5 text-[10px] flex items-center gap-1 font-black">
+                <i class="fa-solid fa-windows"></i> INICIO
+            </button>
+            <span class="text-gray-400 text-[10px] hidden sm:inline">| Millennium OS Edition</span>
+        </div>
+        <div class="text-[10px] text-cyan-400 font-bold flex items-center gap-3">
+            <span>💾 Memoria: 64MB RAM</span>
+            <span id="live-clock" class="bg-gray-900 px-2 py-0.5 border border-cyan-500 text-lime-400">00:00:00</span>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        /* ================= Sound Effects Generator (Web Audio API) ================= */
+        let audioCtx = null;
+        let soundEnabled = true;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playSound(type) {
+            if (!soundEnabled) return;
+            initAudio();
+            if (!audioCtx) return;
+
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            const now = audioCtx.currentTime;
+
+            if (type === 'click') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(800, now);
+                osc.frequency.exponentialRampToValueAtTime(400, now + 0.05);
+                gain.gain.setValueAtTime(0.1, now);
+                gain.gain.linearRampToValueAtTime(0.01, now + 0.05);
+                osc.start(now);
+                osc.stop(now + 0.05);
+            } else if (type === 'score') {
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(523.25, now);
+                osc.frequency.setValueAtTime(659.25, now + 0.08);
+                gain.gain.setValueAtTime(0.1, now);
+                gain.gain.linearRampToValueAtTime(0.01, now + 0.16);
+                osc.start(now);
+                osc.stop(now + 0.16);
+            } else if (type === 'gameover') {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(300, now);
+                osc.frequency.exponentialRampToValueAtTime(80, now + 0.3);
+                gain.gain.setValueAtTime(0.15, now);
+                gain.gain.linearRampToValueAtTime(0.01, now + 0.3);
+                osc.start(now);
+                osc.stop(now + 0.3);
+            }
+        }
+
+        function toggleAudio() {
+            soundEnabled = !soundEnabled;
+            const btn = document.getElementById('audio-toggle-btn');
+            btn.innerText = soundEnabled ? '🔊 SFX: ON' : '🔇 SFX: OFF';
+        }
+
+        /* ================= Theme Switcher ================= */
+        function setTheme(themeName) {
+            playSound('click');
+            document.body.className = '';
+            if (themeName !== 'default') {
+                document.body.classList.add('theme-' + themeName);
+            }
+        }
+
+        /* ================= Window Minimize/Toggle ================= */
+        function minimizeWindow(elementId) {
+            playSound('click');
+            const el = document.getElementById(elementId);
+            if (el) {
+                el.classList.toggle('hidden');
+            }
+        }
+
+        /* ================= Live System Clock & Y2K Timer ================= */
+        function updateClocks() {
+            const now = new Date();
+            
+            // Taskbar Clock
+            const timeStr = now.toLocaleTimeString();
+            document.getElementById('live-clock').innerText = timeStr;
+
+            // Y2K Millennium Counter (Since Jan 1, 2000)
+            const y2kDate = new Date('2000-01-01T00:00:00');
+            const diffMs = now - y2kDate;
+            const years = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 365.25));
+            const days = Math.floor((diffMs % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((diffMs % (1000 * 60)) / 1000);
+
+            document.getElementById('y2k-timer').innerText = 
+                `${years}y ${days}d ${hours}h ${mins}m ${secs}s`;
+        }
+        setInterval(updateClocks, 1000);
+        updateClocks();
+
+        /* ================= Winamp Audio Player Simulation ================= */
+        const playlist = [
+            { name: "⚡ Millennium Synth - Cyber Drift 2000", duration: "03:42" },
+            { name: "🛸 Vaporwave Dream - Neon Highway", duration: "02:55" },
+            { name: "💾 Matrix Hacker - Binary Beats", duration: "04:10" }
+        ];
+        let currentTrackIndex = 0;
+        let isPlaying = false;
+        let playInterval = null;
+        let secondsElapsed = 0;
+
+        // Generate Visualizer Bars
+        const visContainer = document.getElementById('vis-container');
+        for (let i = 0; i < 20; i++) {
+            const bar = document.createElement('div');
+            bar.className = 'vis-bar';
+            bar.style.height = '10%';
+            visContainer.appendChild(bar);
+        }
+
+        function updateVisualizer() {
+            const bars = document.querySelectorAll('.vis-bar');
+            bars.forEach(bar => {
+                if (isPlaying) {
+                    const h = Math.floor(Math.random() * 85) + 15;
+                    bar.style.height = h + '%';
+                } else {
+                    bar.style.height = '10%';
+                }
+            });
+        }
+
+        function togglePlay() {
+            playSound('click');
+            isPlaying = !isPlaying;
+            const btn = document.getElementById('play-btn');
+            const status = document.getElementById('player-status');
+
+            if (isPlaying) {
+                btn.innerText = '⏸ PAUSE';
+                status.innerText = '▶ REPRODUCIENDO';
+                playInterval = setInterval(() => {
+                    secondsElapsed++;
+                    const m = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+                    const s = String(secondsElapsed % 60).padStart(2, '0');
+                    document.getElementById('player-time').innerText = `${m}:${s}`;
+                    updateVisualizer();
+                }, 200);
+            } else {
+                btn.innerText = '▶ PLAY';
+                status.innerText = '⏸ PAUSADO';
+                clearInterval(playInterval);
+                updateVisualizer();
+            }
+        }
+
+        function stopAudio() {
+            playSound('click');
+            isPlaying = false;
+            clearInterval(playInterval);
+            secondsElapsed = 0;
+            document.getElementById('player-time').innerText = '00:00';
+            document.getElementById('play-btn').innerText = '▶ PLAY';
+            document.getElementById('player-status').innerText = '⏹ DETENIDO';
+            updateVisualizer();
+        }
+
+        function nextTrack() {
+            playSound('click');
+            currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+            document.getElementById('current-track-name').innerText = playlist[currentTrackIndex].name;
+            secondsElapsed = 0;
+        }
+
+        function prevTrack() {
+            playSound('click');
+            currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
+            document.getElementById('current-track-name').innerText = playlist[currentTrackIndex].name;
+            secondsElapsed = 0;
+        }
+
+        function adjustVolume(val) {
+            playSound('click');
+        }
+
+        /* ================= Status Updater (MSN Style) ================= */
+        function updateStatus() {
+            playSound('click');
+            const input = document.getElementById('status-input');
+            const display = document.getElementById('current-status-display');
+            if (input.value.trim() !== '') {
+                display.innerText = input.value;
+                input.value = '';
+            }
+        }
+
+        /* ================= Guestbook System ================= */
+        const guestbookEntries = [
+            { author: "Neo_Matrix", avatar: "⚡ Hacker", msg: "¡Increíble sitio web! Nos vemos en el ciberespacio.", date: "10/02/2000" },
+            { author: "CyberGirl_99", avatar: "💖 Princess", msg: "¡Me encantan las canciones y los colores neón! agregame a MSN ⭐", date: "08/02/2000" }
+        ];
+
+        function renderGuestbook() {
+            const container = document.getElementById('guestbook-entries');
+            container.innerHTML = '';
+            guestbookEntries.forEach(entry => {
+                const item = document.createElement('div');
+                item.className = 'p-2 bg-purple-950/40 border border-pink-500/20 rounded font-mono text-xs space-y-1';
+                item.innerHTML = `
+                    <div class="flex justify-between text-[10px] text-cyan-300">
+                        <span class="font-bold">${entry.avatar} ${entry.author}</span>
+                        <span class="text-gray-400">${entry.date}</span>
+                    </div>
+                    <p class="text-gray-200">${entry.msg}</p>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function addGuestbookEntry(e) {
+            e.preventDefault();
+            playSound('click');
+            const author = document.getElementById('gb-author').value;
+            const avatar = document.getElementById('gb-avatar').value;
+            const msg = document.getElementById('gb-msg').value;
+
+            guestbookEntries.unshift({
+                author: author,
+                avatar: avatar,
+                msg: msg,
+                date: new Date().toLocaleDateString()
+            });
+
+            document.getElementById('gb-author').value = '';
+            document.getElementById('gb-msg').value = '';
+            renderGuestbook();
+        }
+        renderGuestbook();
+
+        /* ================= Mini Cyber Snake Game ================= */
+        const canvas = document.getElementById('snake-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = 320;
+        canvas.height = 240;
+
+        const gridSize = 10;
+        let snake = [{ x: 160, y: 120 }];
+        let food = { x: 80, y: 80 };
+        let dx = gridSize, dy = 0;
+        let score = 0;
+        let gameLoopInterval = null;
+
+        function startGame() {
+            playSound('click');
+            document.getElementById('game-overlay').classList.add('hidden');
+            snake = [{ x: 160, y: 120 }, { x: 150, y: 120 }];
+            dx = gridSize;
+            dy = 0;
+            score = 0;
+            document.getElementById('game-score').innerText = 'PUNTOS: ' + score;
+            spawnFood();
+            if (gameLoopInterval) clearInterval(gameLoopInterval);
+            gameLoopInterval = setInterval(updateSnake, 80);
+        }
+
+        function spawnFood() {
+            food.x = Math.floor(Math.random() * (canvas.width / gridSize)) * gridSize;
+            food.y = Math.floor(Math.random() * (canvas.height / gridSize)) * gridSize;
+        }
+
+        function updateSnake() {
+            const head = { x: snake[0].x + dx, y: snake[0].y + dy };
+
+            // Wall Collision Check
+            if (head.x < 0 || head.x >= canvas.width || head.y < 0 || head.y >= canvas.height || checkSelfCollision(head)) {
+                playSound('gameover');
+                clearInterval(gameLoopInterval);
+                document.getElementById('game-overlay').classList.remove('hidden');
+                return;
+            }
+
+            snake.unshift(head);
+
+            // Food Eat Check
+            if (head.x === food.x && head.y === food.y) {
+                playSound('score');
+                score += 10;
+                document.getElementById('game-score').innerText = 'PUNTOS: ' + score;
+                spawnFood();
+            } else {
+                snake.pop();
+            }
+
+            drawGame();
+        }
+
+        function checkSelfCollision(head) {
+            return snake.some((part, index) => index !== 0 && part.x === head.x && part.y === head.y);
+        }
+
+        function drawGame() {
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw Food
+            ctx.fillStyle = '#ff007f';
+            ctx.fillRect(food.x, food.y, gridSize - 1, gridSize - 1);
+
+            // Draw Snake
+            snake.forEach((part, index) => {
+                ctx.fillStyle = index === 0 ? '#00ffff' : '#00ff00';
+                ctx.fillRect(part.x, part.y, gridSize - 1, gridSize - 1);
+            });
+        }
+
+        function changeDir(dir) {
+            playSound('click');
+            if (dir === 'UP' && dy === 0) { dx = 0; dy = -gridSize; }
+            if (dir === 'DOWN' && dy === 0) { dx = 0; dy = gridSize; }
+            if (dir === 'LEFT' && dx === 0) { dx = -gridSize; dy = 0; }
+            if (dir === 'RIGHT' && dx === 0) { dx = gridSize; dy = 0; }
+        }
+
+        window.addEventListener('keydown', e => {
+            if (['ArrowUp', 'KeyW'].includes(e.code)) changeDir('UP');
+            if (['ArrowDown', 'KeyS'].includes(e.code)) changeDir('DOWN');
+            if (['ArrowLeft', 'KeyA'].includes(e.code)) changeDir('LEFT');
+            if (['ArrowRight', 'KeyD'].includes(e.code)) changeDir('RIGHT');
+        });
+
+        /* ================= Cursor Stars & Particles Trail Canvas ================= */
+        const trailCanvas = document.getElementById('trail-canvas');
+        const tCtx = trailCanvas.getContext('2d');
+        let particles = [];
+
+        function resizeTrailCanvas() {
+            trailCanvas.width = window.innerWidth;
+            trailCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeTrailCanvas);
+        resizeTrailCanvas();
+
+        window.addEventListener('mousemove', (e) => {
+            for (let i = 0; i < 2; i++) {
+                particles.push({
+                    x: e.clientX,
+                    y: e.clientY,
+                    vx: (Math.random() - 0.5) * 2,
+                    vy: (Math.random() - 0.5) * 2,
+                    size: Math.random() * 4 + 2,
+                    color: ['#ff007f', '#00ffff', '#00ff00', '#ffff00'][Math.floor(Math.random() * 4)],
+                    life: 1.0
+                });
+            }
+        });
+
+        function animateParticles() {
+            tCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
+            particles.forEach((p, index) => {
+                p.x += p.vx;
+                p.y += p.vy;
+                p.life -= 0.03;
+
+                tCtx.fillStyle = p.color;
+                tCtx.globalAlpha = Math.max(0, p.life);
+                tCtx.fillRect(p.x, p.y, p.size, p.size);
+
+                if (p.life <= 0) {
+                    particles.splice(index, 1);
+                }
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        /* ================= Matrix / Cyber Grid Canvas Background ================= */
+        const bgCanvas = document.getElementById('bg-canvas');
+        const bgCtx = bgCanvas.getContext('2d');
+
+        function resizeBgCanvas() {
+            bgCanvas.width = window.innerWidth;
+            bgCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeBgCanvas);
+        resizeBgCanvas();
+
+        const drops = Array(Math.floor(window.innerWidth / 20)).fill(1);
+
+        function drawMatrixBg() {
+            bgCtx.fillStyle = 'rgba(5, 5, 21, 0.15)';
+            bgCtx.fillRect(0, 0, bgCanvas.width, bgCanvas.height);
+
+            bgCtx.fillStyle = '#00ff00';
+            bgCtx.font = '14px monospace';
+
+            drops.forEach((y, i) => {
+                const text = String.fromCharCode(0x30A0 + Math.random() * 96);
+                const x = i * 20;
+                bgCtx.fillText(text, x, y * 20);
+
+                if (y * 20 > bgCanvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            });
+        }
+        setInterval(drawMatrixBg, 50);
+
+        /* ================= Easter Eggs & Fun Effects ================= */
+        function triggerEasterEgg(type) {
+            playSound('click');
+            if (type === 'popup') {
+                alert("⚠️ ADVERTENCIA Y2K: ¡El milenio ha llegado al ciberespacio! Todo funciona perfectamente.");
+            } else if (type === 'glitch') {
+                document.body.style.filter = 'invert(1) hue-rotate(180deg)';
+                setTimeout(() => document.body.style.filter = 'none', 1000);
+            } else if (type === 'matrix') {
+                for (let i = 0; i < 50; i++) {
+                    particles.push({
+                        x: Math.random() * window.innerWidth,
+                        y: Math.random() * window.innerHeight,
+                        vx: (Math.random() - 0.5) * 5,
+                        vy: (Math.random() - 0.5) * 5,
+                        size: 6,
+                        color: '#00ff00',
+                        life: 2.0
+                    });
+                }
+            } else if (type === 'party') {
+                let count = 0;
+                const interval = setInterval(() => {
+                    const colors = ['default', 'pink', 'matrix', 'silver'];
+                    setTheme(colors[count % colors.length]);
+                    count++;
+                    if (count > 8) {
+                        clearInterval(interval);
+                        setTheme('default');
+                    }
+                }, 200);
+            }
+        }
+    </script>
+</body>
+</html>
